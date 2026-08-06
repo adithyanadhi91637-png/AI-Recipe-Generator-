@@ -38,39 +38,6 @@ AI Recommendation
 
 ---
 
-# Project Structure
-
-AI_Recipe_Generator/
-│
-├── app.py
-├── database/
-│   └── db.py
-│
-├── dataset/
-│   └── recipes.csv
-│
-├── models/
-│   └── recommender.py
-│
-├── static/
-│   ├── css/
-│   ├── images/
-│   └── js/
-│
-├── templates/
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── results.html
-│   ├── recipe.html
-│   └── history.html
-│
-├── requirements.txt
-└── README.md
-
-
----
-
 # How It Works
 
 1. User creates an account or logs in.
