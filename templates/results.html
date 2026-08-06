@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Recommended Recipes</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="results-page">
+
+<div class="results-container">
+
+    <!-- Header -->
+
+    <div class="results-header">
+
+        <div class="brand">
+            🍽 CookSmart AI
+        </div>
+
+        <h1>Recommended Recipes</h1>
+
+        <p>
+            Here's what we found based on your ingredients.
+        </p>
+
+        <div class="ingredients-used">
+
+            <strong>Ingredients Used</strong>
+
+            <div class="ingredient-tags">
+
+                {% for ingredient in ingredients %}
+
+                    <span class="ingredient-tag">
+                        🥗 {{ ingredient }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="search-summary">
+
+            <h3>{{ recipes|length }} Recipe(s) Found</h3>
+
+            <p>
+                AI selected the best recipes based on your available ingredients.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Recipes -->
+
+    {% if recipes %}
+
+    <div class="recipe-grid">
+
+        {% for recipe in recipes %}
+
+        <div class="recipe-card">
+
+            <div class="recipe-badge">
+                🤖 AI Recommended
+            </div>
+
+            <img src="{{ url_for('static', filename='images/' + recipe.image) }}"
+                 alt="{{ recipe.recipe }}">
+
+            <div class="recipe-content">
+
+                <h2>{{ recipe.recipe }}</h2>
+
+                <p>{{ recipe.description }}</p>
+
+                <div class="recipe-info">
+
+                    <span>⏱ {{ recipe.time }}</span>
+
+                    <span>⭐ {{ recipe.difficulty }}</span>
+
+                </div>
+
+                <div class="match-score">
+
+                    🥗 {{ recipe.matches }} Ingredient Match(es)
+
+                </div>
+
+                <a href="/recipe/{{ recipe.id }}" class="view-btn">
+
+                    👨‍🍳 View Recipe
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="back-section">
+
+        <a href="/" class="back-btn">
+
+            Back to Home
+
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <div class="no-result">
+
+        <h2>😔 No Matching Recipes</h2>
+
+        <p>
+
+            Try adding more ingredients or choosing different ones.
+
+        </p>
+
+        
+
+        <a href="/" class="back-btn">
+
+            Try Again
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <h2>🍽 CookSmart AI</h2>
+
+            <p>
+                Smart Recipe Recommendation System using Artificial Intelligence.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">Home</a>
+
+            <a href="/#features">Features</a>
+
+            <a href="/#about">About</a>
+
+        </div>
+
+        <div class="footer-tech">
+
+            <h3>Technologies</h3>
+
+            <p>Python</p>
+
+            <p>Flask</p>
+
+            <p>MySQL</p>
+
+            <p>HTML • CSS • JavaScript</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+
+        © 2026 CookSmart AI | Developed for Educational Purpose
+
+    </p>
+
+</footer>
+
+</body>
+
+</html>

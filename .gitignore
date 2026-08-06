@@ -1,0 +1,6 @@
+recipe_env/
+__pycache__/
+*.pyc
+.env
+.vscode/
+.idea/
