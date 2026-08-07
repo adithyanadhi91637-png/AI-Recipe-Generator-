@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 app.secret_key = "CookSmart@AI_Recipe_2026_Secure_Key"
 
-print("✅ Connected to MySQL Successfully!")
+print("✅ Connected to SQLite Successfully!")
 
 
 @app.route("/")
@@ -44,21 +44,25 @@ def login():
         password = request.form["password"]
 
         cursor.execute(
-            "SELECT * FROM users WHERE email=%s",
+            "SELECT * FROM users WHERE email=?",
             (email,)
         )
 
         user = cursor.fetchone()
+        print("User:", user)
 
         if user:
+            print("User Found")
 
             if check_password_hash(
                 user["password"],
                 password
             ):
+                print("Password Correct")
 
                 session["user_id"] = user["id"]
                 session["user_name"] = user["name"]
+                print("Session:", dict(session))
 
                 flash("Login Successful!")
 
@@ -86,7 +90,7 @@ def register():
             return redirect("/register")
 
         cursor.execute(
-            "SELECT * FROM users WHERE email=%s",
+            "SELECT * FROM users WHERE email=?",
             (email,)
         )
 
@@ -103,7 +107,7 @@ def register():
         cursor.execute(
             """
             INSERT INTO users(name,email,password)
-            VALUES(%s,%s,%s)
+            VALUES(?,?,?)
             """,
             (
                 name,
@@ -119,6 +123,21 @@ def register():
         return redirect("/login")
 
     return render_template("register.html")
+
+@app.route("/recipe/<int:id>")
+def recipe(id):
+
+    cursor.execute(
+        "SELECT * FROM recipes WHERE id=?",
+        (id,)
+    )
+
+    recipe = cursor.fetchone()
+
+    return render_template(
+        "recipe.html",
+        recipe=recipe
+    )
 
 @app.route("/logout")
 def logout():
@@ -142,11 +161,9 @@ def predict():
 
     ]
 
-    cursor.execute(
-        "SELECT * FROM recipes"
-    )
+    cursor.execute("SELECT * FROM recipes")
 
-    recipes = cursor.fetchall()
+    recipes = [dict(row) for row in cursor.fetchall()]
 
     matched_recipes = recommend(
 
@@ -161,7 +178,7 @@ def predict():
         """
         INSERT INTO search_history
         (user_id, ingredients)
-        VALUES (%s, %s)
+        VALUES (?,?)
         """,
         (
             session["user_id"],
@@ -182,28 +199,6 @@ def predict():
     )
 
 
-@app.route("/recipe/<int:id>")
-def recipe(id):
-
-    cursor.execute(
-
-        "SELECT * FROM recipes WHERE id=%s",
-
-        (id,)
-
-    )
-
-    recipe = cursor.fetchone()
-
-    return render_template(
-
-        "recipe.html",
-
-        recipe=recipe
-
-    )
-
-
 @app.route("/history")
 def history():
 
@@ -216,7 +211,7 @@ def history():
         SELECT ingredients,
                searched_at
         FROM search_history
-        WHERE user_id=%s
+        WHERE user_id=?
         ORDER BY searched_at DESC
         """,
         (session["user_id"],)

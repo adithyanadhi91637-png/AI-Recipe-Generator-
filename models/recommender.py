@@ -5,34 +5,38 @@ def recommend(recipes, user_ingredients):
     for row in recipes:
 
         recipe_ingredients = [
-            item.strip()
-            for item in row["ingredients"].lower().split(",")
+            item.strip().lower()
+            for item in row["ingredients"].split(",")
         ]
 
         match_count = 0
 
         for ingredient in user_ingredients:
 
-            if ingredient in recipe_ingredients:
+            if ingredient.lower() in recipe_ingredients:
                 match_count += 1
 
         if match_count > 0:
 
             matched_recipes.append({
 
-    "recipe": row["recipe_name"],
+                "id": row["id"],
 
-    "matches": match_count,
+                "recipe": row["recipe"],
 
-    "description": row["description"],
+                "matches": match_count,
 
-    "time": row["cooking_time"],
+                "description": row["description"],
 
-    "difficulty": row["difficulty"],
+                "instructions": row["instructions"],
 
-    "image": row["image"]
+                "time": row["time"],
 
-})
+                "difficulty": row["difficulty"],
+
+                "image": row["image"]
+
+            })
 
     matched_recipes.sort(
         key=lambda x: x["matches"],

@@ -1,18 +1,12 @@
-import mysql.connector
+import sqlite3
 
-try:
+db = sqlite3.connect(
+    "recipes.db",
+    check_same_thread=False
+)
 
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="YOUR_PASSWORD",
-        database="ai_recipe_generator_db"
-    )
+db.row_factory = sqlite3.Row
 
-    cursor = db.cursor(dictionary=True)
+cursor = db.cursor()
 
-    print("Database Connected!")
-
-except mysql.connector.Error as err:
-
-    print(err)
+print("✅ SQLite Connected Successfully!")
