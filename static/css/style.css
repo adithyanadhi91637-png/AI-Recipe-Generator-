@@ -201,6 +201,7 @@ ul{
     align-items:center;
 
     padding:80px;
+    padding-bottom: 80px;
 
 
     background:
@@ -239,6 +240,8 @@ ul{
     border-radius:40px;
 
     font-weight:600;
+
+    margin-top: 40px;
 
     margin-bottom:25px;
 
@@ -1845,4 +1848,257 @@ ul{
 
 .back-btn:hover{
     background:#219150;
+}
+
+
+
+@media (max-width:768px){
+
+body{
+    overflow-x:hidden;
+}
+
+/* Navbar */
+
+nav{
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:28px;
+}
+
+.nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.nav-links a{
+    font-size:18px;
+}
+
+/* Hero */
+
+.hero{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:40px;
+    line-height:1.2;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+/* Search Box */
+
+.search-box{
+    width:95%;
+    padding:25px;
+}
+
+.search-box input{
+    width:100%;
+    font-size:18px;
+}
+
+/* Ingredient Buttons */
+
+.quick-ingredients{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.quick-ingredients button{
+    width:100%;
+}
+
+/* Recipe Cards */
+
+.recipe-grid{
+    grid-template-columns:1fr;
+    padding:20px;
+}
+
+.recipe-card{
+    width:100%;
+}
+
+/* Recipe Image */
+
+.recipe-card img{
+    height:220px;
+}
+
+/* Recipe Details Page */
+
+.container{
+    width:95%;
+    margin:20px auto;
+}
+
+.container img{
+    height:auto;
+    max-height:300px;
+}
+
+/* Buttons */
+
+.view-btn,
+.back,
+button{
+    width:100%;
+    text-align:center;
+}
+
+/* Footer */
+
+.footer-container{
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    gap:30px;
+}
+
+}
+
+/* ============================= */
+/* MOBILE RESPONSIVE DESIGN */
+/* ============================= */
+
+@media screen and (max-width: 768px){
+
+    /* Navbar */
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+        padding:18px;
+        text-align:center;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .nav-links{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        padding:0;
+    }
+
+    .nav-links li{
+        list-style:none;
+    }
+
+    .welcome-user{
+        width:100%;
+        margin-top:10px;
+        text-align:center;
+    }
+
+    /* Hero */
+
+    .hero{
+        flex-direction:column;
+        padding:40px 20px;
+        gap:40px;
+        text-align:center;
+    }
+
+    .hero-left,
+    .hero-right{
+        width:100%;
+    }
+
+    .hero-left h1{
+        font-size:42px;
+    }
+
+    .hero-left h2{
+        font-size:28px;
+    }
+
+    .hero-left p{
+        font-size:18px;
+    }
+
+    /* Search Card */
+
+    .search-card{
+        height: auto;
+        min-height: unset;
+        margin-bottom: 60px;
+        padding:25px;
+    }
+
+    .search-card input{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+    /* Ingredient buttons */
+
+    .quick-add{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .quick-add button{
+        width:100%;
+    }
+
+    .search-btn{
+        width:100%;
+    }
+
+    /* Stats */
+
+    .stats{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:20px;
+    }
+
+    /* Features */
+
+    .features-container{
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .feature-card{
+        width:100%;
+    }
+
+    /* About */
+
+    .about-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    /* Footer */
+
+    .footer-container{
+        display:flex;
+        flex-direction:column;
+        text-align:center;
+        gap:30px;
+    }
+
 }
